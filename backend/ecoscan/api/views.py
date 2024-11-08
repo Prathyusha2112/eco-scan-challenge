@@ -36,9 +36,13 @@ class ImageAnalysisView(APIView):
         recognized_items = []
 
         if 'shirt' in file_name:
-            recognized_items.append({"name": "Shirt", "carbonFootprint": 2.5})
+            recognized_items.append({"name": "Shirt", "carbonFootprint": 5.0})
         elif 'jeans' in file_name:
-            recognized_items.append({"name": "Jeans", "carbonFootprint": 3.0})
+            recognized_items.append({"name": "Jeans", "carbonFootprint": 10.0})
+        elif 'shoes' in file_name:
+            recognized_items.append({"name": "Shoes", "carbonFootprint": 8.0})
+        elif 'jacket' in file_name:
+            recognized_items.append({"name": "Hat", "carbonFootprint": 15.0})
         else:
             recognized_items.append({"name": "Unknown", "carbonFootprint": 0.0})
 
