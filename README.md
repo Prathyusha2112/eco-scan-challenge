@@ -22,6 +22,7 @@ EcoScan is a web application designed to help users understand the environmental
 
 2. **Install Dependencies and Run Application**  
    Run the following commands:
+   
     for frontend:
    ```bash
    cd ecoscan-frontend
@@ -58,7 +59,9 @@ To calculate the environmental impact of each clothing item, we have assigned ap
 ## 🌟 Product & Technical Enhancements
 
 1.**Scaling**: 🌐
+
 a. Content Caching: Using caching mechanisms like Redis or Memcached to cache frequent queries or responses, such as results of image analysis, eco-scores, or offers based on user data. This reduces the load on the server and speeds up response times.
+
 b.  Auto-scaling: Implement auto-scaling for cloud services to automatically add or remove instances based on real-time traffic demand.
    
 2. **Enhanced Eco-Score Model**: 📊 Integrate brand-specific carbon footprint data to calculate more accurate eco-scores. Many companies disclose their sustainability initiatives or carbon footprints. By incorporating this data, you can adjust the score based on the sustainability efforts of the brand. Factor in the materials used in the garments. Different materials have vastly different carbon footprints (e.g., cotton vs. synthetic fibers). Classifying the carbon footprints by the type of material used can lead to more efficient calculation of eco-scores.
