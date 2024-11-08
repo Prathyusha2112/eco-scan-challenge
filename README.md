@@ -56,6 +56,12 @@ To calculate the environmental impact of each clothing item, we have assigned ap
 
 ---
 
+The mock formula used to calculate eco reward points is: eco_points = 100/carbon_footprint. This formula can be adjusted according to the requirement.
+
+Offers are rolled out incrementally with eco-reward points. more points unlock better offers.
+
+p.s. Currently, the mock function used for image recognition recognizes images based on the file name of the image. any unknown name will lead the function to put the image in 'unknown' category.
+
 ## 🌟 Product & Technical Enhancements
 
 1.**Scaling**: 🌐
