@@ -6,6 +6,13 @@ from rest_framework import status
 import openai
 import requests
 import logging
+import base64
+import json
+
+openai.api_key = "4039f8e9300c485d8fedb7e7c8e52eb6"
+
+API_ENDPOINT = "https://reewild-az-open-ai-aus.openai.azure.com/openai/deployments/gpt-4o-temporary/chat/completions?api-version=2024-08-01-preview"
+API_KEY = "4039f8e9300c485d8fedb7e7c8e52eb6"
 
 # Create your views here.
 
@@ -38,32 +45,40 @@ class ImageAnalysisView(APIView):
         return recognized_items
 
     def image_recognition(self, file):
-        api_endpoint = "https://reewild-az-open-ai-aus.openai.azure.com/openai/deployments/gpt-4o-temporary/chat/completions?api-version=2024-08-01-preview"
-        headers = {
-            "Authorization": "Bearer YOUR_API_KEY",  # Replace with your actual API key
-            "Content-Type": "application/json"
-        }
+        
         try:
             image_data = file.read()
             files = {'file': (file.name, image_data, file.content_type)}
 
-            data = {
-                "model": "gpt-4o",
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": "Is this image a shirt or a pair of jeans? give answer in only one word."
-                    }
-                ],
-                "temperature": 0.5,
+            api_endpoint = "https://reewild-az-open-ai-aus.openai.azure.com/openai/deployments/gpt-4o-temporary/chat/completions?api-version=2024-08-01-preview"
+            headers = {
+            "api-key": "4039f8e9300c485d8fedb7e7c8e52eb6",
             }
 
-            logging.info(f"Sending request to OpenAI API")
-            response = requests.post(api_endpoint, headers=headers, files=files, json=data)
-            response.raise_for_status()
+            payload = {
+                "messages": [
+                    {"role": "user", "content": "Analyze the following image and describe it as either 'shirt' or 'jeans' if possible."}
+                ],
+                
+            }
 
-            logging.info(f"Response status code: {response.status_code}")
-            logging.info(f"Response content: {response.content}")
+            response = requests.post(api_endpoint, headers=headers, files=files, data=payload)
+            if response.status_code == 200:
+                response_data = response.json()
+                logging.info(f"Response Data: {response_data}") 
+
+                # Ensure 'choices' key exists in the response data
+                if 'choices' in response_data:
+                    recognized_items = response_data['choices'][0]['message']['content']
+                    return [{"name": recognized_items, "carbonFootprint": 2.5}]
+                else:
+                    logging.error("Unexpected response structure: 'choices' key not found.")
+                    return None
+            else:
+                logging.error(f"Request failed with status code {response.status_code}: {response.text}")
+                return None
+
+            
 
             recognized_items = response.json()['choices'][0]['message']['content']
             return recognized_items
@@ -77,10 +92,7 @@ class ImageAnalysisView(APIView):
 
 
 class EcoScoreView(APIView):
-    item_scores = {
-        "Shirt": 5,
-        "Jeans": 10,
-    }
+    
 
     def get(self, request, *args, **kwargs):
         items = request.query_params.getlist('recognized_items')
@@ -107,7 +119,7 @@ class EcoScoreView(APIView):
 class OffersView(APIView):
     offers = [
         {"name": "10 0ff on eco-friendly brands", "points_req": 1},
-        {"name": "Free shipping on your next purchase", "points_req": 200},
+        {"name": "Free shipping on your next purchase", "points_req": 10},
         {"name": "25 off on eco-friendly brands", "points_req": 500},
     ]
 

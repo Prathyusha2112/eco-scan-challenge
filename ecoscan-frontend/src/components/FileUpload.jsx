@@ -83,6 +83,7 @@ const FileUpload = ({ onUpload }) => {
             // onEcoPoints(response.data.eco_points);
         } catch (err) {
             setError('Failed to upload image');
+            setLoading(false);
         }
     };
 

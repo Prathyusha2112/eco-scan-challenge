@@ -76,7 +76,7 @@ const App = () => {
     return (
         
         <Container className = {classes.container}>
-            <h1 style={{ fontFamily: "'Poppins', sans-serif", color: "#ffffff", marginBottom: '1rem', textAlign: 'center'}}>Eco Scan</h1>
+            <h1 style={{ fontFamily: "'Poppins', sans-serif", color: "#ffffff", marginBottom: '1rem', textAlign: 'center', fontSize: '3rem'}}>Eco Scan</h1>
             <FileUpload onUpload={handleUpload} />
             <Typography variant="h6" align="center" className={classes.ecoPoints}>
                 Eco Points: {ecoPoints}

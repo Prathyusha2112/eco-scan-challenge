@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Typography } from '@mui/material';
+import { Typography, Grid } from '@mui/material';
 import axios from 'axios';
 import { makeStyles } from '@mui/styles';
 
@@ -37,7 +37,7 @@ const Results = ({ items, setEcoPoints }) => {
     }, [items, setEcoPoints]);
 
     return (
-        <div className={classes.Results}>
+        <Grid className={classes.Results}>
             <Typography variant="h6" gutterBottom className={classes.itemTitle}>
                 Recognized Items
             </Typography>
@@ -51,7 +51,7 @@ const Results = ({ items, setEcoPoints }) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </Grid>
     );
 };
 
