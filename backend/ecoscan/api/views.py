@@ -52,7 +52,7 @@ class ImageAnalysisView(APIView):
 
             api_endpoint = "https://reewild-az-open-ai-aus.openai.azure.com/openai/deployments/gpt-4o-temporary/chat/completions?api-version=2024-08-01-preview"
             headers = {
-            "api-key": "4039f8e9300c485d8fedb7e7c8e52eb6",
+            "api-key": "xxxxx",
             }
 
             payload = {
