@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Typography, List, ListItem, ListItemText} from '@mui/material';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+    Offers: {
+        background: 'rgba(255, 255, 255, 0.1)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: '8px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        padding: '1rem',
+        marginTop: '2rem',
+        marginBottom: '2rem',
+        fontFamily: 'Poppins',
+        fontWeight: '700',
+    }
+}));
 
 const Offers = ({ ecoPoints }) => {
     const [offers, setOffers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const classes = useStyles();
 
     useEffect(() => {
         setLoading(true);
@@ -36,7 +52,7 @@ const Offers = ({ ecoPoints }) => {
     }
 
     return (
-        <div>
+        <div className={ classes.Offers }>
             <Typography variant="h6" gutterBottom>Available Offers</Typography>
             <List>
                 {offers.map((offer, index) => (
