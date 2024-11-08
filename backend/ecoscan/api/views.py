@@ -122,9 +122,9 @@ class EcoScoreView(APIView):
 
 class OffersView(APIView):
     offers = [
-        {"name": "10 0ff on eco-friendly brands", "points_req": 1},
-        {"name": "Free shipping on your next purchase", "points_req": 10},
-        {"name": "25 off on eco-friendly brands", "points_req": 500},
+        {"name": "10 0ff on eco-friendly brands", "points_req": 10},
+        {"name": "Free shipping on your next purchase", "points_req": 30},
+        {"name": "25 off on eco-friendly brands", "points_req": 50},
     ]
 
     def get(self, request, *args, **kwargs):
